@@ -1,29 +1,5 @@
 #!/usr/bin/env ruby
 
-print "Digite o nome do arquivo de entrada:"
-file_name = gets.chomp + ".pgm"
-
-puts """
-Arquivo #{file_name} carregado com sucesso.
-c - carga
-t - exibicao na tela
-n - negativo
-r - rotacao
-v - espelhamento vertical
-h - espelhamento horizontal
-x - corte
-e - filtro da erosao
-d - filtro da dilatacao
-m - filtro da mediana
-z - filtro da media
-1 - filtro de bordas 1
-2 - filtro de bordas 2
-3 - filtro de bordas 3
-g - gravacao
-C - comparacao
-a - ajuda
-s - sair
-"""
 class MatrixFactory
   def initialize(content)
     @data = {}
@@ -72,6 +48,31 @@ class Matrix
   end
 
 end
+
+print "Digite o nome do arquivo de entrada:"
+file_name = gets.chomp + ".pgm"
+m = MatrixFactory.new(File.read(file_name)).build
+puts """
+Arquivo #{file_name} carregado com sucesso.
+c - carga
+t - exibicao na tela
+n - negativo
+r - rotacao
+v - espelhamento vertical
+h - espelhamento horizontal
+x - corte
+e - filtro da erosao
+d - filtro da dilatacao
+m - filtro da mediana
+z - filtro da media
+1 - filtro de bordas 1
+2 - filtro de bordas 2
+3 - filtro de bordas 3
+g - gravacao
+C - comparacao
+a - ajuda
+s - sair
+"""
 
 class Negative
   def initialize(m)
@@ -171,9 +172,6 @@ class Erosion
     Matrix.new(data, @m.line_count, @m.col_count)
   end
 end
-
-
-m = MatrixFactory.new(File.read(file_name)).build
 
 begin
   print "Digite um comando:"
