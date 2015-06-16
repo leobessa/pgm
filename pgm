@@ -272,6 +272,17 @@ class Filter2
   end
 end
 
+class Filter3
+  def initialize(m)
+    @m = m
+  end
+  
+  def build(window_size,k)
+    d = Dilatacao.new(@m).build(window_size)
+    Limiar.new(d - @m, k).build
+  end
+end
+
 class Limiar
   def initialize(m,k)
     @m = m
@@ -361,6 +372,15 @@ begin
     k = Integer(gets)
     puts
     m = Filter2.new(m).build(window_size,k)
+    puts "Operacao realizada com sucesso."
+  when "3\n"
+    print "Digite o tamanho da janela:"
+    window_size = Integer(gets)
+    puts
+    print "Informe o valor de k:"
+    k = Integer(gets)
+    puts
+    m = Filter3.new(m).build(window_size,k)
     puts "Operacao realizada com sucesso."
   when "s\n"
     break
