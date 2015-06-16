@@ -25,13 +25,13 @@ s - sair"""
   end
 
   let(:entrada_content) do
-"""9 4 5 0 8
+"9 4 5 0 8
 1 3 10 3 2
 1 7 5 7 9
 1 6 3 15 2
 2 0 3 8 10
 1 0 0 1 16
-9 12 7 1 3"""
+9 12 7 1 3"
   end
 
   it 'should display banner' do
@@ -91,6 +91,7 @@ Digite um comando:"""
 Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
 #{banner}
 Digite um comando:
+Operacao realizada com sucesso.
 Digite um comando:
 0 255
 200 55
@@ -110,6 +111,7 @@ Digite um comando:"""
 Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
 #{banner}
 Digite um comando:
+Operacao realizada com sucesso.
 Digite um comando:
 7 8 9
 4 5 6
@@ -132,6 +134,7 @@ Digite um comando:"""
 Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
 #{banner}
 Digite um comando:
+Operacao realizada com sucesso.
 Digite um comando:
 3 2 1
 6 5 4
@@ -158,6 +161,7 @@ Digite um comando:"""
 Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
 #{banner}
 Digite um comando:
+Operacao realizada com sucesso.
 Digite um comando:
 9 1 2 1 1 1 9
 12 0 0 6 7 3 4
@@ -210,6 +214,7 @@ Digite um comando:"""
 Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
 #{banner}
 Digite um comando:
+Operacao realizada com sucesso.
 Digite um comando:
 5 4
 6 6
@@ -234,6 +239,7 @@ Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
 #{banner}
 Digite um comando:
 Digite o tamanho da janela:
+Operacao realizada com sucesso.
 Digite um comando:
 0 0 2 2 1 1 1
 0 0 2 2 0 0 0
@@ -255,6 +261,7 @@ Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
 #{banner}
 Digite um comando:
 Digite o tamanho da janela:
+Operacao realizada com sucesso.
 Digite um comando:
 9 10 10 10 8
 9 10 10 10 9
@@ -278,6 +285,7 @@ Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
 #{banner}
 Digite um comando:
 Digite o tamanho da janela:
+Operacao realizada com sucesso.
 Digite um comando:
 4 5 4 4 3
 4 5 4 5 4
@@ -301,6 +309,7 @@ Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
 #{banner}
 Digite um comando:
 Digite o tamanho da janela:
+Operacao realizada com sucesso.
 Digite um comando:
 4 5 4 5 3
 4 5 5 5 7

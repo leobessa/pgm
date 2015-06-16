@@ -255,15 +255,20 @@ begin
     puts m.to_s
   when "n\n"
     m = Negative.new(m).build
+    puts "Operacao realizada com sucesso."
   when "h\n"
     m = HorizontalMirrored.new(m).build
+    puts "Operacao realizada com sucesso."
   when "v\n"
     m = VerticalMirrored.new(m).build
+    puts "Operacao realizada com sucesso."
   when "r\n"
     m = Rotation.new(m).build
+    puts "Operacao realizada com sucesso."
   when "x\n"
     begin
       m = Cut.new(m).build(gets.to_i,gets.to_i,gets.to_i,gets.to_i)
+      puts "Operacao realizada com sucesso."
     rescue Exception => e
       puts e
       puts
@@ -273,21 +278,25 @@ begin
     window_size = Integer(gets)
     puts
     m = Erosion.new(m).build(window_size)
+    puts "Operacao realizada com sucesso."
   when "d\n"
     print "Digite o tamanho da janela:"
     window_size = Integer(gets)
     puts
     m = Dilatacao.new(m).build(window_size)
+    puts "Operacao realizada com sucesso."
   when "z\n"
     print "Digite o tamanho da janela:"
     window_size = Integer(gets)
     puts
     m = Mean.new(m).build(window_size)
+    puts "Operacao realizada com sucesso."
   when "m\n"
     print "Digite o tamanho da janela:"
     window_size = Integer(gets)
     puts
     m = Median.new(m).build(window_size)
+    puts "Operacao realizada com sucesso."
   when "s\n"
     break
   end
