@@ -3,7 +3,7 @@ require 'open3'
 load './pgm'
 
 describe 'pgm' do
-  it 'can generate an SSH config' do
+  it 'exibicao na tela' do
     path = ".:#{ENV['PATH']}"
     env  = {'PATH' => path}
     input = """9 4 5 0 8
