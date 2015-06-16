@@ -34,6 +34,24 @@ Digite um comando:"""
     output, status = Open3.capture2e("./pgm", stdin_data: stdin_data.join("\n") + "\n")
     expect(output).to eq(expected_output)
   end
+  
+  it 'should load file' do
+    stdin_data = %w(sample_entrada c sample_entrada2 t s)
+    File.open("#{stdin_data[0]}.pgm",'w') { |file| file.puts '0' }
+    File.open("#{stdin_data[2]}.pgm",'w') { |file| file.puts '2' }
+    expected_output =
+    """Digite o nome do arquivo de entrada:
+Arquivo sample_entrada.pgm carregado com sucesso.
+#{banner}
+Digite um comando:
+Digite o nome do arquivo de entrada:
+Arquivo sample_entrada2.pgm carregado com sucesso.
+Digite um comando:
+2
+Digite um comando:"""
+    output, status = Open3.capture2e("./pgm", stdin_data: stdin_data.join("\n") + "\n")
+    expect(output).to eq(expected_output)
+  end
 
   it 'should display matrix' do
     input = """9 4 5 0 8

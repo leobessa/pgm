@@ -178,6 +178,11 @@ begin
   command = gets
   puts unless command == "s\n"
   case command
+  when "c\n"
+    print "Digite o nome do arquivo de entrada:"
+    file_name = gets.chomp + ".pgm"
+    m = MatrixFactory.new(File.read(file_name)).build
+    puts "\nArquivo #{file_name} carregado com sucesso."
   when "t\n"
     puts m.to_s
   when "n\n"
