@@ -1,6 +1,6 @@
 require 'open3'
 
-load './pgm'
+# load './pgm'
 
 describe 'pgm' do
   it 'should display banner' do
