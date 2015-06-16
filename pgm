@@ -24,12 +24,54 @@ C - comparacao
 a - ajuda
 s - sair
 """
+class Matrix
+
+  def initialize(content)
+    @data = {}
+    @line_count = 0
+    @col_count = 0
+    content.each_line.each_with_index do |line,i|
+      @line_count = i if @line_count < i
+      line.split(" ").each_with_index do |v,j|
+        @col_count = j if @col_count < j
+        @data[{i: i, j: j}] = Integer(v)
+      end
+    end
+  end
+  
+  def each_with_index
+    0.upto(@line_count) do |i|
+      0.upto(@col_count) do |j|
+        yield @data[{i: i, j: j}], i, j
+      end
+    end
+  end
+  
+  def to_s
+    value = ""
+    each_with_index do |v,i,j|
+      value << @data[{i: i, j: j}].to_s
+      if j == @col_count
+        value << "\n"
+      else
+        value << " "
+      end
+    end
+    value
+  end
+
+end
+
+m = Matrix.new(File.read(file_name))
 
 begin
   print "Digite um comando:"
   command = gets
   case command
   when "t\n"
+    puts
+    puts m.to_s
+  when "n\n"
     puts
     puts File.read(file_name)
   when "s\n"
