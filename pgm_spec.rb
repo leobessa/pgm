@@ -224,4 +224,88 @@ Digite um comando:"""
     expect(output).to eq(expected_output)
   end
   
+  it 'should display error on cutted matrix values' do
+    input = "4 5 4 4 3
+4 5 4 5 4
+3 4 6 6 6
+2 3 6 6 8
+1 1 4 6 8
+4 3 3 5 6
+5 4 3 4 5"
+    stdin_data = %w(sample_entrada x 1 3 5 5 s)
+    File.open("#{stdin_data[0]}.pgm",'w') do |file|
+      file.puts input
+    end
+    expected_output =
+    """Digite o nome do arquivo de entrada:
+Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
+c - carga
+t - exibicao na tela
+n - negativo
+r - rotacao
+v - espelhamento vertical
+h - espelhamento horizontal
+x - corte
+e - filtro da erosao
+d - filtro da dilatacao
+m - filtro da mediana
+z - filtro da media
+1 - filtro de bordas 1
+2 - filtro de bordas 2
+3 - filtro de bordas 3
+g - gravacao
+C - comparacao
+a - ajuda
+s - sair
+Digite um comando:
+Limites invalidos
+
+Digite um comando:"""
+    output, status = Open3.capture2e("./pgm", stdin_data: stdin_data.join("\n") + "\n")
+    expect(output).to eq(expected_output)
+  end
+
+  it 'should display cutted matrix' do
+    input = "4 5 4 4 3
+4 5 4 5 4
+3 4 6 6 6
+2 3 6 6 8
+1 1 4 6 8
+4 3 3 5 6
+5 4 3 4 5"
+    stdin_data = %w(sample_entrada x 1 3 4 4 s)
+    File.open("#{stdin_data[0]}.pgm",'w') do |file|
+      file.puts input
+    end
+    expected_output =
+    """Digite o nome do arquivo de entrada:
+Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
+c - carga
+t - exibicao na tela
+n - negativo
+r - rotacao
+v - espelhamento vertical
+h - espelhamento horizontal
+x - corte
+e - filtro da erosao
+d - filtro da dilatacao
+m - filtro da mediana
+z - filtro da media
+1 - filtro de bordas 1
+2 - filtro de bordas 2
+3 - filtro de bordas 3
+g - gravacao
+C - comparacao
+a - ajuda
+s - sair
+Digite um comando:
+5 4
+6 6
+6 8
+6 8
+Digite um comando:"""
+    output, status = Open3.capture2e("./pgm", stdin_data: stdin_data.join("\n") + "\n")
+    expect(output).to eq(expected_output)
+  end
+  
 end

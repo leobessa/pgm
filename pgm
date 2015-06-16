@@ -133,6 +133,26 @@ class Rotation
   end
 end
 
+class Cut
+  def initialize(m)
+    @m = m
+  end
+  
+  def build(x_sup,y_sup,x_inf,y_inf)
+    data = {}
+    raise "Limites invalidos" if (x_inf > @m.line_count) || (y_inf > @m.col_count)
+    @m.each_with_index do |v,i,j|
+      if (x_sup..x_inf).include?(i) && (y_sup..y_inf).include?(j)
+        new_i = i - x_sup
+        new_j = j - y_sup
+        data[{i: new_i, j: new_j}] = v
+      end
+    end
+    Matrix.new(data, x_inf-x_sup, y_inf-y_sup)
+  end
+end
+
+
 m = MatrixFactory.new(File.read(file_name)).build
 
 begin
@@ -158,6 +178,15 @@ begin
     puts
     m = Rotation.new(m).build
     puts m.to_s
+  when "x\n"
+    puts
+    begin
+      m = Cut.new(m).build(gets.to_i,gets.to_i,gets.to_i,gets.to_i)
+      puts m.to_s
+    rescue Exception => e
+      puts e
+      puts
+    end
   when "s\n"
     break
   end
