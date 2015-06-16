@@ -261,6 +261,17 @@ class Filter1
   end
 end
 
+class Filter2
+  def initialize(m)
+    @m = m
+  end
+  
+  def build(window_size,k)
+    e = Erosion.new(@m).build(window_size)
+    Limiar.new(@m-e, k).build
+  end
+end
+
 class Limiar
   def initialize(m,k)
     @m = m
@@ -341,6 +352,15 @@ begin
     k = Integer(gets)
     puts
     m = Filter1.new(m).build(window_size,k)
+    puts "Operacao realizada com sucesso."
+  when "2\n"
+    print "Digite o tamanho da janela:"
+    window_size = Integer(gets)
+    puts
+    print "Informe o valor de k:"
+    k = Integer(gets)
+    puts
+    m = Filter2.new(m).build(window_size,k)
     puts "Operacao realizada com sucesso."
   when "s\n"
     break
