@@ -3,12 +3,8 @@ require 'open3'
 # load './pgm'
 
 describe 'pgm' do
-  it 'should display banner' do
-    stdin_data = %w(sample_entrada s)
-    expected_output =
-    """Digite o nome do arquivo de entrada:
-Arquivo sample_entrada.pgm carregado com sucesso.
-c - carga
+  let(:banner) do
+"""c - carga
 t - exibicao na tela
 n - negativo
 r - rotacao
@@ -25,7 +21,15 @@ z - filtro da media
 g - gravacao
 C - comparacao
 a - ajuda
-s - sair
+s - sair"""
+  end
+
+  it 'should display banner' do
+    stdin_data = %w(sample_entrada s)
+    expected_output =
+    """Digite o nome do arquivo de entrada:
+Arquivo sample_entrada.pgm carregado com sucesso.
+#{banner}
 Digite um comando:"""
     output, status = Open3.capture2e("./pgm", stdin_data: stdin_data.join("\n") + "\n")
     expect(output).to eq(expected_output)
@@ -46,24 +50,7 @@ Digite um comando:"""
     expected_output =
     """Digite o nome do arquivo de entrada:
 Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
-c - carga
-t - exibicao na tela
-n - negativo
-r - rotacao
-v - espelhamento vertical
-h - espelhamento horizontal
-x - corte
-e - filtro da erosao
-d - filtro da dilatacao
-m - filtro da mediana
-z - filtro da media
-1 - filtro de bordas 1
-2 - filtro de bordas 2
-3 - filtro de bordas 3
-g - gravacao
-C - comparacao
-a - ajuda
-s - sair
+#{banner}
 Digite um comando:
 #{input}
 Digite um comando:"""
@@ -80,24 +67,7 @@ Digite um comando:"""
     expected_output =
     """Digite o nome do arquivo de entrada:
 Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
-c - carga
-t - exibicao na tela
-n - negativo
-r - rotacao
-v - espelhamento vertical
-h - espelhamento horizontal
-x - corte
-e - filtro da erosao
-d - filtro da dilatacao
-m - filtro da mediana
-z - filtro da media
-1 - filtro de bordas 1
-2 - filtro de bordas 2
-3 - filtro de bordas 3
-g - gravacao
-C - comparacao
-a - ajuda
-s - sair
+#{banner}
 Digite um comando:
 0 255
 200 55
@@ -115,24 +85,7 @@ Digite um comando:"""
     expected_output =
     """Digite o nome do arquivo de entrada:
 Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
-c - carga
-t - exibicao na tela
-n - negativo
-r - rotacao
-v - espelhamento vertical
-h - espelhamento horizontal
-x - corte
-e - filtro da erosao
-d - filtro da dilatacao
-m - filtro da mediana
-z - filtro da media
-1 - filtro de bordas 1
-2 - filtro de bordas 2
-3 - filtro de bordas 3
-g - gravacao
-C - comparacao
-a - ajuda
-s - sair
+#{banner}
 Digite um comando:
 7 8 9
 4 5 6
@@ -153,24 +106,7 @@ Digite um comando:"""
     expected_output =
     """Digite o nome do arquivo de entrada:
 Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
-c - carga
-t - exibicao na tela
-n - negativo
-r - rotacao
-v - espelhamento vertical
-h - espelhamento horizontal
-x - corte
-e - filtro da erosao
-d - filtro da dilatacao
-m - filtro da mediana
-z - filtro da media
-1 - filtro de bordas 1
-2 - filtro de bordas 2
-3 - filtro de bordas 3
-g - gravacao
-C - comparacao
-a - ajuda
-s - sair
+#{banner}
 Digite um comando:
 3 2 1
 6 5 4
@@ -195,24 +131,7 @@ Digite um comando:"""
     expected_output =
     """Digite o nome do arquivo de entrada:
 Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
-c - carga
-t - exibicao na tela
-n - negativo
-r - rotacao
-v - espelhamento vertical
-h - espelhamento horizontal
-x - corte
-e - filtro da erosao
-d - filtro da dilatacao
-m - filtro da mediana
-z - filtro da media
-1 - filtro de bordas 1
-2 - filtro de bordas 2
-3 - filtro de bordas 3
-g - gravacao
-C - comparacao
-a - ajuda
-s - sair
+#{banner}
 Digite um comando:
 9 1 2 1 1 1 9
 12 0 0 6 7 3 4
@@ -239,24 +158,7 @@ Digite um comando:"""
     expected_output =
     """Digite o nome do arquivo de entrada:
 Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
-c - carga
-t - exibicao na tela
-n - negativo
-r - rotacao
-v - espelhamento vertical
-h - espelhamento horizontal
-x - corte
-e - filtro da erosao
-d - filtro da dilatacao
-m - filtro da mediana
-z - filtro da media
-1 - filtro de bordas 1
-2 - filtro de bordas 2
-3 - filtro de bordas 3
-g - gravacao
-C - comparacao
-a - ajuda
-s - sair
+#{banner}
 Digite um comando:
 Limites invalidos
 
@@ -280,24 +182,7 @@ Digite um comando:"""
     expected_output =
     """Digite o nome do arquivo de entrada:
 Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
-c - carga
-t - exibicao na tela
-n - negativo
-r - rotacao
-v - espelhamento vertical
-h - espelhamento horizontal
-x - corte
-e - filtro da erosao
-d - filtro da dilatacao
-m - filtro da mediana
-z - filtro da media
-1 - filtro de bordas 1
-2 - filtro de bordas 2
-3 - filtro de bordas 3
-g - gravacao
-C - comparacao
-a - ajuda
-s - sair
+#{banner}
 Digite um comando:
 5 4
 6 6
@@ -321,24 +206,7 @@ Digite um comando:"""
     expected_output =
     """Digite o nome do arquivo de entrada:
 Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
-c - carga
-t - exibicao na tela
-n - negativo
-r - rotacao
-v - espelhamento vertical
-h - espelhamento horizontal
-x - corte
-e - filtro da erosao
-d - filtro da dilatacao
-m - filtro da mediana
-z - filtro da media
-1 - filtro de bordas 1
-2 - filtro de bordas 2
-3 - filtro de bordas 3
-g - gravacao
-C - comparacao
-a - ajuda
-s - sair
+#{banner}
 Digite um comando:
 Digite o tamanho da janela:
 0 0 2 2 1 1 1
