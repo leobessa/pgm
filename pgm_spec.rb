@@ -268,4 +268,28 @@ Digite um comando:"""
     expect(output).to eq(expected_output)
   end
   
+  it 'should display mean matrix' do
+    input = entrada_content
+    stdin_data = %w(sample_entrada z 3 t s)
+    File.open("#{stdin_data[0]}.pgm",'w') { |file| file.puts input }
+    expected_output =
+    """Digite o nome do arquivo de entrada:
+Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
+#{banner}
+Digite um comando:
+Digite o tamanho da janela:
+Digite um comando:
+4 5 4 4 3
+4 5 4 5 4
+3 4 6 6 6
+2 3 6 6 8
+1 1 4 6 8
+4 3 3 5 6
+5 4 3 4 5
+Digite um comando:"""
+    output, status = Open3.capture2e("./pgm", stdin_data: stdin_data.join("\n") + "\n")
+    expect(output).to eq(expected_output)
+  end
+  
+  
 end
