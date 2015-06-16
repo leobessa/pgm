@@ -87,6 +87,36 @@ class Negative
   end
 end
 
+class VerticalMirrored
+  def initialize(m)
+    @m = m
+  end
+  
+  def build
+    data = {}
+    @m.each_with_index do |v,i,j|
+      new_j = @m.col_count - j
+      data[{i: i, j: new_j}] = v
+    end
+    Matrix.new(data, @m.line_count, @m.col_count)
+  end
+end
+
+class HorizontalMirrored
+  def initialize(m)
+    @m = m
+  end
+  
+  def build
+    data = {}
+    @m.each_with_index do |v,i,j|
+      new_i = @m.line_count - i
+      data[{i: new_i, j: j}] = v
+    end
+    Matrix.new(data, @m.line_count, @m.col_count)
+  end
+end
+
 m = MatrixFactory.new(File.read(file_name)).build
 
 begin
@@ -99,6 +129,14 @@ begin
   when "n\n"
     puts
     m = Negative.new(m).build
+    puts m.to_s
+  when "h\n"
+    puts
+    m = HorizontalMirrored.new(m).build
+    puts m.to_s
+  when "v\n"
+    puts
+    m = VerticalMirrored.new(m).build
     puts m.to_s
   when "s\n"
     break
