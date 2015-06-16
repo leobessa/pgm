@@ -308,7 +308,7 @@ Digite um comando:
 2 3 6 7 9
 1 1 3 3 10
 2 2 1 3 8
-9 7 1 2 2
+9 7 1 3 3
 Digite um comando:"""
     output, status = Open3.capture2e("./pgm", stdin_data: stdin_data.join("\n") + "\n")
     expect(output).to eq(expected_output)
