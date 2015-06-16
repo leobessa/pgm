@@ -322,4 +322,29 @@ Digite um comando:"""
     output, status = Open3.capture2e("./pgm", stdin_data: stdin_data.join("\n") + "\n")
     expect(output).to eq(expected_output)
   end
+  
+  it 'should display matrix with filter 1' do
+    input = entrada_content
+    stdin_data = %w(sample_entrada 1 3 1 t s)
+    File.open("#{stdin_data[0]}.pgm",'w') { |file| file.puts input }
+    expected_output =
+    """Digite o nome do arquivo de entrada:
+Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
+#{banner}
+Digite um comando:
+Digite o tamanho da janela:
+Informe o valor de k:
+Operacao realizada com sucesso.
+Digite um comando:
+255 255 255 255 255
+255 255 255 255 255
+255 255 255 255 255
+255 255 255 255 255
+255 255 255 255 255
+255 255 255 255 255
+255 255 255 255 255
+Digite um comando:"""
+    output, status = Open3.capture2e("./pgm", stdin_data: stdin_data.join("\n") + "\n")
+    expect(output).to eq(expected_output)
+  end
 end

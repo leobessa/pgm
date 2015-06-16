@@ -26,6 +26,14 @@ class Matrix
     @col_count = col_count
   end
   
+  def -(other)
+    new_data = {}
+    other.each_with_index do |v,i,j|
+      new_data[{i: i, j: j}] = @data[{i: i, j: j}] - v
+    end
+    Matrix.new(new_data, @line_count, @col_count)
+  end
+  
   def each_with_index
     0.upto(@line_count) do |i|
       0.upto(@col_count) do |j|
@@ -241,6 +249,34 @@ class Median
   end
 end
 
+class Filter1
+  def initialize(m)
+    @m = m
+  end
+  
+  def build(window_size,k)
+    d = Dilatacao.new(@m).build(window_size)
+    e = Erosion.new(@m).build(window_size)
+    Limiar.new(d-e, k).build
+  end
+end
+
+class Limiar
+  def initialize(m,k)
+    @m = m
+    @k = k
+  end
+  def build
+    data = {}
+    @m.each_with_index do |v,i,j|
+      new_value = v < @k ? 0 : 255
+      data[{i: i, j: j}] = new_value
+    end
+    Matrix.new(data, @m.line_count, @m.col_count)
+  end
+end
+
+
 begin
   print "Digite um comando:"
   command = gets
@@ -296,6 +332,15 @@ begin
     window_size = Integer(gets)
     puts
     m = Median.new(m).build(window_size)
+    puts "Operacao realizada com sucesso."
+  when "1\n"
+    print "Digite o tamanho da janela:"
+    window_size = Integer(gets)
+    puts
+    print "Informe o valor de k:"
+    k = Integer(gets)
+    puts
+    m = Filter1.new(m).build(window_size,k)
     puts "Operacao realizada com sucesso."
   when "s\n"
     break
