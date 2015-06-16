@@ -180,4 +180,48 @@ Digite um comando:"""
     expect(output).to eq(expected_output)
   end
   
+  it 'should display rotation' do
+    input = "9 4 5 0 8
+1 3 10 3 2
+1 7 5 7 9
+1 6 3 15 2
+2 0 3 8 10
+1 0 0 1 16
+9 12 7 1 2"
+    stdin_data = %w(sample_entrada r s)
+    File.open("#{stdin_data[0]}.pgm",'w') do |file|
+      file.puts input
+    end
+    expected_output =
+    """Digite o nome do arquivo de entrada:
+Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
+c - carga
+t - exibicao na tela
+n - negativo
+r - rotacao
+v - espelhamento vertical
+h - espelhamento horizontal
+x - corte
+e - filtro da erosao
+d - filtro da dilatacao
+m - filtro da mediana
+z - filtro da media
+1 - filtro de bordas 1
+2 - filtro de bordas 2
+3 - filtro de bordas 3
+g - gravacao
+C - comparacao
+a - ajuda
+s - sair
+Digite um comando:
+9 1 2 1 1 1 9
+12 0 0 6 7 3 4
+7 0 3 3 5 10 5
+1 1 8 15 7 3 0
+2 16 10 2 9 2 8
+Digite um comando:"""
+    output, status = Open3.capture2e("./pgm", stdin_data: stdin_data.join("\n") + "\n")
+    expect(output).to eq(expected_output)
+  end
+  
 end

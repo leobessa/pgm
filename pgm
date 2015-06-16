@@ -117,6 +117,22 @@ class HorizontalMirrored
   end
 end
 
+class Rotation
+  def initialize(m)
+    @m = m
+  end
+  
+  def build
+    data = {}
+    @m.each_with_index do |v,i,j|
+      new_i = j
+      new_j = @m.line_count - i
+      data[{i: new_i, j: new_j}] = v
+    end
+    Matrix.new(data, @m.col_count, @m.line_count)
+  end
+end
+
 m = MatrixFactory.new(File.read(file_name)).build
 
 begin
@@ -137,6 +153,10 @@ begin
   when "v\n"
     puts
     m = VerticalMirrored.new(m).build
+    puts m.to_s
+  when "r\n"
+    puts
+    m = Rotation.new(m).build
     puts m.to_s
   when "s\n"
     break
