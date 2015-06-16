@@ -214,6 +214,33 @@ class Mean
   end
 end
 
+class Median
+  def initialize(m)
+    @m = m
+  end
+  
+  def build(window_size)
+    data = {}
+    @m.each_with_index do |v,i,j|
+      half_window_size = window_size.to_i / 2
+      i_range = i-half_window_size .. i+half_window_size
+      j_range = j-half_window_size .. j+half_window_size
+      window_values = i_range.to_a.product(j_range.to_a).map do |xi,xj|
+        @m.data.fetch({i: xi, j: xj},nil)
+      end
+      data[{i: i, j: j}] = median(window_values.compact)
+    end
+    Matrix.new(data, @m.line_count, @m.col_count)
+  end
+  private
+  def median(array)
+    sorted = array.sort
+    count = sorted.count
+    half = count/2
+    sorted[half]
+  end
+end
+
 begin
   print "Digite um comando:"
   command = gets
@@ -256,6 +283,11 @@ begin
     window_size = Integer(gets)
     puts
     m = Mean.new(m).build(window_size)
+  when "m\n"
+    print "Digite o tamanho da janela:"
+    window_size = Integer(gets)
+    puts
+    m = Median.new(m).build(window_size)
   when "s\n"
     break
   end
