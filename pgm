@@ -43,7 +43,7 @@ class MatrixFactory
 end
 
 class Matrix
-  attr_reader :line_count, :col_count
+  attr_reader :line_count, :col_count, :data
   def initialize(data, line_count, col_count)
     @data = data
     @line_count = line_count
@@ -152,6 +152,26 @@ class Cut
   end
 end
 
+class Erosion
+  def initialize(m)
+    @m = m
+  end
+  
+  def build(window_size)
+    data = {}
+    @m.each_with_index do |v,i,j|
+      half_window_size = window_size.to_i / 2
+      i_range = i-half_window_size .. i+half_window_size
+      j_range = j-half_window_size .. j+half_window_size
+      window_values = i_range.to_a.product(j_range.to_a).map do |xi,xj|
+        @m.data.fetch({i: xi, j: xj},nil)
+      end
+      data[{i: i, j: j}] = window_values.compact.min
+    end
+    Matrix.new(data, @m.line_count, @m.col_count)
+  end
+end
+
 
 m = MatrixFactory.new(File.read(file_name)).build
 
@@ -187,6 +207,12 @@ begin
       puts e
       puts
     end
+  when "e\n"
+    print "\nDigite o tamanho da janela:"
+    window_size = Integer(gets)
+    puts
+    m = Erosion.new(m).build(window_size)
+    puts m.to_s
   when "s\n"
     break
   end

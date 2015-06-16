@@ -308,4 +308,47 @@ Digite um comando:"""
     expect(output).to eq(expected_output)
   end
   
+  it 'should display erosion matrix' do
+    input = "8 2 9 2 10 16 2
+0 3 7 15 8 1 1
+5 10 5 3 3 0 7
+4 3 7 6 0 0 12
+9 1 1 1 2 1 9"
+    stdin_data = %w(sample_entrada e 3 s)
+    File.open("#{stdin_data[0]}.pgm",'w') do |file|
+      file.puts input
+    end
+    expected_output =
+    """Digite o nome do arquivo de entrada:
+Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
+c - carga
+t - exibicao na tela
+n - negativo
+r - rotacao
+v - espelhamento vertical
+h - espelhamento horizontal
+x - corte
+e - filtro da erosao
+d - filtro da dilatacao
+m - filtro da mediana
+z - filtro da media
+1 - filtro de bordas 1
+2 - filtro de bordas 2
+3 - filtro de bordas 3
+g - gravacao
+C - comparacao
+a - ajuda
+s - sair
+Digite um comando:
+Digite o tamanho da janela:
+0 0 2 2 1 1 1
+0 0 2 2 0 0 0
+0 0 3 0 0 0 0
+1 1 1 0 0 0 0
+1 1 1 0 0 0 0
+Digite um comando:"""
+    output, status = Open3.capture2e("./pgm", stdin_data: stdin_data.join("\n") + "\n")
+    expect(output).to eq(expected_output)
+  end
+  
 end
