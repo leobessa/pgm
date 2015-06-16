@@ -176,28 +176,23 @@ end
 begin
   print "Digite um comando:"
   command = gets
+  puts unless command == "s\n"
   case command
   when "t\n"
-    puts
     puts m.to_s
   when "n\n"
-    puts
     m = Negative.new(m).build
     puts m.to_s
   when "h\n"
-    puts
     m = HorizontalMirrored.new(m).build
     puts m.to_s
   when "v\n"
-    puts
     m = VerticalMirrored.new(m).build
     puts m.to_s
   when "r\n"
-    puts
     m = Rotation.new(m).build
     puts m.to_s
   when "x\n"
-    puts
     begin
       m = Cut.new(m).build(gets.to_i,gets.to_i,gets.to_i,gets.to_i)
       puts m.to_s
@@ -206,7 +201,7 @@ begin
       puts
     end
   when "e\n"
-    print "\nDigite o tamanho da janela:"
+    print "Digite o tamanho da janela:"
     window_size = Integer(gets)
     puts
     m = Erosion.new(m).build(window_size)
