@@ -182,20 +182,15 @@ begin
     puts m.to_s
   when "n\n"
     m = Negative.new(m).build
-    puts m.to_s
   when "h\n"
     m = HorizontalMirrored.new(m).build
-    puts m.to_s
   when "v\n"
     m = VerticalMirrored.new(m).build
-    puts m.to_s
   when "r\n"
     m = Rotation.new(m).build
-    puts m.to_s
   when "x\n"
     begin
       m = Cut.new(m).build(gets.to_i,gets.to_i,gets.to_i,gets.to_i)
-      puts m.to_s
     rescue Exception => e
       puts e
       puts
@@ -205,7 +200,6 @@ begin
     window_size = Integer(gets)
     puts
     m = Erosion.new(m).build(window_size)
-    puts m.to_s
   when "s\n"
     break
   end

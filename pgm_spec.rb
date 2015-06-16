@@ -60,7 +60,7 @@ Digite um comando:"""
   
   it 'should display negative matrix' do
     input = "255 0\n55 200"
-    stdin_data = %w(sample_entrada n s)
+    stdin_data = %w(sample_entrada n t s)
     File.open("#{stdin_data[0]}.pgm",'w') do |file|
       file.puts input
     end
@@ -68,6 +68,7 @@ Digite um comando:"""
     """Digite o nome do arquivo de entrada:
 Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
 #{banner}
+Digite um comando:
 Digite um comando:
 0 255
 200 55
@@ -78,7 +79,7 @@ Digite um comando:"""
   
   it 'should display horizontal mirrored matrix' do
     input = "1 2 3\n4 5 6\n7 8 9"
-    stdin_data = %w(sample_entrada h s)
+    stdin_data = %w(sample_entrada h t s)
     File.open("#{stdin_data[0]}.pgm",'w') do |file|
       file.puts input
     end
@@ -86,6 +87,7 @@ Digite um comando:"""
     """Digite o nome do arquivo de entrada:
 Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
 #{banner}
+Digite um comando:
 Digite um comando:
 7 8 9
 4 5 6
@@ -99,7 +101,7 @@ Digite um comando:"""
     input = "1 2 3
 4 5 6
 7 8 9"
-    stdin_data = %w(sample_entrada v s)
+    stdin_data = %w(sample_entrada v t s)
     File.open("#{stdin_data[0]}.pgm",'w') do |file|
       file.puts input
     end
@@ -107,6 +109,7 @@ Digite um comando:"""
     """Digite o nome do arquivo de entrada:
 Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
 #{banner}
+Digite um comando:
 Digite um comando:
 3 2 1
 6 5 4
@@ -124,7 +127,7 @@ Digite um comando:"""
 2 0 3 8 10
 1 0 0 1 16
 9 12 7 1 2"
-    stdin_data = %w(sample_entrada r s)
+    stdin_data = %w(sample_entrada r t s)
     File.open("#{stdin_data[0]}.pgm",'w') do |file|
       file.puts input
     end
@@ -132,6 +135,7 @@ Digite um comando:"""
     """Digite o nome do arquivo de entrada:
 Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
 #{banner}
+Digite um comando:
 Digite um comando:
 9 1 2 1 1 1 9
 12 0 0 6 7 3 4
@@ -175,7 +179,7 @@ Digite um comando:"""
 1 1 4 6 8
 4 3 3 5 6
 5 4 3 4 5"
-    stdin_data = %w(sample_entrada x 1 3 4 4 s)
+    stdin_data = %w(sample_entrada x 1 3 4 4 t s)
     File.open("#{stdin_data[0]}.pgm",'w') do |file|
       file.puts input
     end
@@ -183,6 +187,7 @@ Digite um comando:"""
     """Digite o nome do arquivo de entrada:
 Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
 #{banner}
+Digite um comando:
 Digite um comando:
 5 4
 6 6
@@ -199,7 +204,7 @@ Digite um comando:"""
 5 10 5 3 3 0 7
 4 3 7 6 0 0 12
 9 1 1 1 2 1 9"
-    stdin_data = %w(sample_entrada e 3 s)
+    stdin_data = %w(sample_entrada e 3 t s)
     File.open("#{stdin_data[0]}.pgm",'w') do |file|
       file.puts input
     end
@@ -209,6 +214,7 @@ Arquivo #{stdin_data[0]}.pgm carregado com sucesso.
 #{banner}
 Digite um comando:
 Digite o tamanho da janela:
+Digite um comando:
 0 0 2 2 1 1 1
 0 0 2 2 0 0 0
 0 0 3 0 0 0 0
