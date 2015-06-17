@@ -2,13 +2,16 @@
 
 class MatrixFactory
   def initialize(content)
+    lines = content.lines
+    first_line = lines.shift
+    raise "Arquivo Invalido: #{first_line}" unless first_line == "P2\n"
     @data = {}
-    @line_count = 0
-    @col_count = 0
-    content.each_line.each_with_index do |line,i|
-      @line_count = i if @line_count < i
+    @line_count, @col_count = lines.shift.split(" ").map{ |e| Integer(e) }
+    @line_count -= 1
+    @col_count -= 1
+    @k = Integer(lines.shift)
+    lines.each_with_index do |line,i|
       line.split(" ").each_with_index do |v,j|
-        @col_count = j if @col_count < j
         @data[{i: i, j: j}] = Integer(v)
       end
     end
